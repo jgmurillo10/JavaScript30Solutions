@@ -21,7 +21,17 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: yellow;
+      --spacing: 8px;
+      --blur: 4px;
+    }
 
+    img {
+      background: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +55,13 @@
   </style>
 
   <script>
+    const img = document.querySelector('img');
+    const controls = document.querySelector('.controls');
+    const handleUpdate = ({ target: { dataset : {sizing = ''}, name, value} }) => {
+      document.documentElement.style.setProperty(`--${name}`, value + sizing);
+    };
+
+    controls.addEventListener('change', handleUpdate);
   </script>
 
 </body>
